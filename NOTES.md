@@ -26,5 +26,5 @@ Be able to submit your opened investment positions. Information on position incl
 * Form to create/open a position
 
 ### Stretch Goals
-* Close positions
+* Close positions 
 * Including sales price
