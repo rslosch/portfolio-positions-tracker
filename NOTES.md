@@ -28,3 +28,24 @@ Be able to submit your opened investment positions. Information on position incl
 ### Stretch Goals
 * Close positions 
 * Including sales price
+
+### Data
+
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "Rob",
+            "characters":
+        }
+    ],
+    "investment":[
+        {
+            "id": 1
+            "user_id": 1
+            "ticker": ""
+            "buyPrice": ""
+            "numShares": ""
+        }
+    ]
+}

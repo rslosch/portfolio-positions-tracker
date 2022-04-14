@@ -37,3 +37,13 @@ Be able to submit your opened investment positions. Information on position incl
 ### Stretch Goals
 * Close positions 
 * Including profit/loss information on close
+
+# Structure
+
+-APP
+    -Navigation
+    -Form
+    -InvestmentList
+        -InvestmentCard
+    -Signup
+    -Login
