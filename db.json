@@ -1,3 +1,17 @@
 {
-  "users": []
+  "users": [
+    {
+      "username": "Steven",
+      "id": 1
+    },
+    {
+      "username": "Whittaker",
+      "id": 2
+    },
+    {
+      "username": "Arturo",
+      "id": 3
+    }
+  ],
+  "investments": []
 }

@@ -36,11 +36,11 @@ function App() {
   useEffect(() => {
     const userId = localStorage.getItem('user_id')
       if(userId && !loggedIn){
-        fetch('http://localhost:3001/users'+ userId)
+        fetch('http://localhost:3001/users/'+ userId)
         .then(r => r.json())
         .then(data => loginUser(data))
       }
-  }, [])
+  }, [loggedIn])
 
   return (
     <Router>
@@ -48,10 +48,10 @@ function App() {
       <Errors errors= {errors }/>
       <Routes>
         <Route path='/' element={ <Home /> } />
-        <Route path='/login' element={ <Login loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} /> } />
-        <Route path='/signup' element={ <Signup loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} /> } />
-        <Route path='/investments' element={ <InvestmentList /> } />
-        <Route path='/investments/new' element={ <InvestmentForm /> } />
+        <Route path='/login' element={ <Login loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} loggedIn={ loggedIn } /> } />
+        <Route path='/signup' element={ <Signup loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} loggedIn={loggedIn} /> } />
+        <Route path='/investments' element={ <InvestmentList currentUser={currentUser} loggedIn={loggedIn} /> } />
+        <Route path='/investments/new' element={ <InvestmentForm loggedIn={loggedIn}/> } />
       </Routes>
     </Router>
   );

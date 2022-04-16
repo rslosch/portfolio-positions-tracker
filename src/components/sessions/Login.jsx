@@ -2,13 +2,16 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-const Login = ({ loginUser, addErrors, clearErrors }) => {
+const Login = ({ loginUser, addErrors, clearErrors, loggedIn }) => {
   const [username, setUsername] = useState("")
   const [users, setUsers] = useState([])
 
   const navigate = useNavigate()
 
   useEffect(() => {
+    if(loggedIn){
+      return navigate('/investments')
+    }
     fetch('http://localhost:3001/users')
     .then(r => r.json())
     .then(data => setUsers(data))
@@ -16,7 +19,7 @@ const Login = ({ loginUser, addErrors, clearErrors }) => {
     return () => {
       clearErrors()
     }
-  }, [])
+  }, [loggedIn])
 
   const handleChange = e => {
     setUsername(e.target.value)

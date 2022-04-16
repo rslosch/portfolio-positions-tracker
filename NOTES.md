@@ -39,13 +39,14 @@ Be able to submit your opened investment positions. Information on position incl
             "characters":
         }
     ],
-    "investment":[
+    "investments":[
         {
             "id": 1
             "user_id": 1
             "ticker": ""
             "buyPrice": ""
             "numShares": ""
+            "sellTarget": ""
         }
     ]
 }

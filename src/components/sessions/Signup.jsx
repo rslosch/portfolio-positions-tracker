@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 //baseURL as fetch link not posting...?
 
-const Signup = ({ loginUser, addErrors, clearErrors }) => {
+const Signup = ({ loginUser, addErrors, clearErrors, loggedIn }) => {
   const [username, setUsername] = useState("")
 
   const navigate = useNavigate()
@@ -29,11 +29,14 @@ const Signup = ({ loginUser, addErrors, clearErrors }) => {
   }
 
   useEffect(() => {
+    if(loggedIn){
+      return navigate('/investments')
+    }
     return () => {
       clearErrors([])
     }
     
-  }, [])
+  }, [loggedIn])
   
   return (
     <div>

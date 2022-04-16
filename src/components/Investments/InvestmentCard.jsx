@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InvestmentCard = () => {
+const InvestmentCard = () => { 
   return (
     <div>InvestmentCard</div>
   )
