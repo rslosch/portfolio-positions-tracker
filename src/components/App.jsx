@@ -6,10 +6,12 @@ import InvestmentList from "./Investments/InvestmentList";
 import InvestmentForm from "./Investments/InvestmentForm";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import React, { useState , useEffect } from "react";
+import Errors from "./static/Errors";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false)
+  const [errors, setErrors] = useState([])
 
   const loginUser = user => {
     setCurrentUser(user)
@@ -18,9 +20,16 @@ function App() {
   }
 
   const logoutUser = () => {
-    setCurrentUser()
+    setCurrentUser({})
     setLoggedIn(false)
     localStorage.removeItem('user_id')
+  }
+
+  const addErrors = error => {
+    setErrors(error)
+  }
+  const clearErrors = () => {
+    setErrors([])
   }
 
   //useEffect sideeffect to persists logged in status
@@ -36,10 +45,11 @@ function App() {
   return (
     <Router>
       <NavBar loggedIn={ loggedIn } logoutUser={ logoutUser } />
+      <Errors errors= {errors }/>
       <Routes>
         <Route path='/' element={ <Home /> } />
-        <Route path='/login' element={ <Login /> } />
-        <Route path='/signup' element={ <Signup loginUser={loginUser}/> } />
+        <Route path='/login' element={ <Login loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} /> } />
+        <Route path='/signup' element={ <Signup loginUser={loginUser} addErrors={addErrors} clearErrors={clearErrors} /> } />
         <Route path='/investments' element={ <InvestmentList /> } />
         <Route path='/investments/new' element={ <InvestmentForm /> } />
       </Routes>

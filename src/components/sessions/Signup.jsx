@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { headers } from '../../Globals'
 import { useNavigate } from 'react-router-dom'
 
 //baseURL as fetch link not posting...?
 
-const Signup = ({ loginUser }) => {
+const Signup = ({ loginUser, addErrors, clearErrors }) => {
   const [username, setUsername] = useState("")
 
   const navigate = useNavigate()
@@ -12,17 +12,28 @@ const Signup = ({ loginUser }) => {
   const handleSubmit = e =>{
     e.preventDefault()
 
-    fetch('http://localhost:3001/users', {
-      method: "POST",
-      headers ,
-      body: JSON.stringify({ username })
-    })
-    .then(r => r.json())
-    .then(data => {
-      loginUser(data)
-      navigate('/investments')
-    })
+      if(username.length >= 5){
+        fetch('http://localhost:3001/users', {
+          method: "POST",
+          headers ,
+          body: JSON.stringify({ username })
+        })
+        .then(r => r.json())
+        .then(data => {
+          loginUser(data)
+          navigate('/investments')
+        })
+      } else {
+        addErrors(["Username must be longer than 5 characters"])
+    }
   }
+
+  useEffect(() => {
+    return () => {
+      clearErrors([])
+    }
+    
+  }, [])
   
   return (
     <div>

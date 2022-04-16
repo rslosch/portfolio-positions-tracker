@@ -14,7 +14,6 @@ function NavBar({ loggedIn, logoutUser }) {
   const logout = e => {
     e.preventDefault()
     logoutUser()
-
     localStorage.removeItem('user_id')
   }
 
